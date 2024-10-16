@@ -19,9 +19,50 @@ function handleTask (number){
     }
 } ;
 
+function handleMax(num){
+    let numInterval ;
+    if(num > 0){
+        let numCounterText = document.createElement('p') ;
+        numCounterText.textContent = num ;
+        numInterval = setInterval(() => {
+            num -= 1 ;
+            numCounterText.textContent = num ;
+            if(num < 1) {
+                numCounterText.remove() ;
+            };
+        }, 100);
+        elCounterBox.append(numCounterText) ;
+    }else{
+        clearInterval(numInterval) ;
+    }
+};
+
+function handleLength(num){
+    let lengthInterval ;
+    if(num > 0){
+        let lengthCounterText = document.createElement('p') ;
+        lengthCounterText.textContent = num ;
+        lengthInterval = setInterval(() => {
+            num -= 1 ;
+            lengthCounterText.textContent = num ;
+            if(num < 1) {
+                lengthCounterText.remove() ;
+            };
+        }, 5);
+        elCounterBox.append(lengthCounterText) ;
+    }else{
+        clearInterval(lengthInterval) ;
+    }
+}
+
 elInput.addEventListener('change', (evt) => {
     if(evt.target.value.length > 4){
-        alert('Length max 4 ')
+        alert('Length max 4 ') ;
+        
+    }else if(evt.target.value.length == 3){
+        handleMax(evt.target.value) ;
+    }else if(evt.target.value.length == 4){
+        handleLength(evt.target.value)
     }else{
         let searchVal = evt.target.value ;
         if(isNaN(searchVal)){
